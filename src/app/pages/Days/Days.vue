@@ -18,18 +18,12 @@
 
 <script>
   import { mapState } from 'vuex'
-  import fetchJsonp from 'fetch-jsonp'
-  import * as mosicaCore from 'mosica-core'
-  import { HttpClient } from '../../services/HttpClient'
+//  import * as mosicaCore from 'mosica-core'
   import { MosicaRouter } from '../../services/MosicaRouter'
-  const gigService = new mosicaCore.GigService(HttpClient(fetchJsonp), new mosicaCore.Matcher())
+  import { fakeGigsByDay } from '../../__mocks__/gigs-sample'
+//  const gigService = new mosicaCore.GigService(HttpClient(fetchJsonp), new mosicaCore.Matcher())
 
   export default {
-    props: {
-      gigService: {
-        default: () => gigService
-      }
-    },
     data () {
       return {
         gigsByDay: [],
@@ -39,7 +33,7 @@
     },
     async created() {
       this.isLoading = true
-      this.gigsByDay = await this.gigService.retrieveNextGigs()
+      this.gigsByDay = fakeGigsByDay
       this.isLoading = false
       this.mosicaRouter = new MosicaRouter(this.$router)
     },
