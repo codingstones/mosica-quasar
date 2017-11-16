@@ -1,7 +1,6 @@
 import { mount } from 'vue-test-utils'
 import NewGig from '@/app/pages/NewGig/NewGig.vue'
 import NewGigPage from '../../../__page_objects__/NewGigPageObject'
-import { store } from '../../../../vuex/store'
 import { cloneProductionStore, Wrap } from '../../../../../test/helpers'
 import Vuex from 'vuex'
 jest.mock('../../../services/mosica-api')
@@ -144,16 +143,19 @@ describe('New Gig', () => {
   })
 })
 
+const MIN_LENGTH = 4
+const MAX_LENGTH = 20
+
 function nameWithValidLength() {
-  return nameWithLength(5)
+  return nameWithLength(MIN_LENGTH + 1)
 }
 
 function tooShortName() {
-  return nameWithLength(3)
+  return nameWithLength(MIN_LENGTH - 1)
 }
 
 function tooLongName() {
-  return nameWithLength(21)
+  return nameWithLength(MAX_LENGTH + 1)
 }
 
 function nameWithLength(length) {

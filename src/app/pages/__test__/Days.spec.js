@@ -1,15 +1,11 @@
 import { mount } from 'vue-test-utils'
 import Days from '@/app/pages/Days/Days.vue'
-import { fakeGigsByDay } from '../../services/__mocks__/gigs-sample'
-import { fakeGigsByDay2 } from '../../services/__mocks__/gigs-sample2'
+import { fakeGigsByDay, FIRST_DAY_GIG_TEXTS } from '../../services/__mocks__/gigs-sample'
 import DayListPage from '../../__page_objects__/DaysPageObject'
 import { cloneProductionStore } from '../../../../test/helpers'
 jest.mock('../../services/MosicaCore')
 
 describe('Days', () => {
-  const FIRST_DAY_GIG_TEXTS = fakeGigsByDay[0].gigs.map(
-    gig => gig.title + ' - ' + gig.place)
-
   let page, wrapper
   beforeEach(async () => {
     wrapper = mount(Days, { store: cloneProductionStore() })

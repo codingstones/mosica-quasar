@@ -54,3 +54,5 @@ export const fakeGigsByDay = [
     ]
   }
 ]
+
+export const FIRST_DAY_GIG_TEXTS = fakeGigsByDay[0].gigs.map(gig => gig.title + ' - ' + gig.place)
